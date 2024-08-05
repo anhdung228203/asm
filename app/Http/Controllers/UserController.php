@@ -2,20 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Tag;
-use App\Http\Requests\StoreTagRequest;
-use App\Http\Requests\UpdateTagRequest;
+use App\Models\User;
 use Illuminate\Http\Request;
 
-class TagController extends Controller
+class UserController extends Controller
 {
-    const PATH_VIEW  = 'admin.tags.';
+    const PATH_VIEW  = 'admin.users.';
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $data = Tag::query()->latest('id')->get();
+        $data = User::query()->latest('id')->get();
         return view(self::PATH_VIEW . __FUNCTION__, compact('data'));
     }
 
@@ -32,10 +30,10 @@ class TagController extends Controller
      */
     public function store(Request $request)
     {
-        Tag::query()->create($request->all());
+        User::query()->create($request->all());
 
         return redirect()
-            ->route('admin.categories.index')
+            ->route('admin.users.index')
             ->with('msg', 'Thao tác thành công');
     }
 
@@ -44,7 +42,7 @@ class TagController extends Controller
      */
     public function show(string $id)
     {
-        $model = Tag::query()->findOrFail($id);
+        $model = User::query()->findOrFail($id);
 
         return view(self::PATH_VIEW . __FUNCTION__, compact('model'));
     }
@@ -54,7 +52,7 @@ class TagController extends Controller
      */
     public function edit(string $id)
     {
-        $model = Tag::query()->findOrFail($id);
+        $model = User::query()->findOrFail($id);
 
         return view(self::PATH_VIEW . __FUNCTION__, compact('model'));
     }
@@ -64,7 +62,7 @@ class TagController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $model = Tag::query()->findOrFail($id);
+        $model = User::query()->findOrFail($id);
 
         $model->update($request->all());
 
@@ -76,12 +74,12 @@ class TagController extends Controller
      */
     public function destroy(string $id)
     {
-        $model = Tag::query()->findOrFail($id);
+        $model = User::query()->findOrFail($id);
 
         $model->delete();
 
         return redirect()
-            ->route('admin.categories.index')
+            ->route('admin.users.index')
             ->with('msg', 'Thao tác thành công');
     }
 }

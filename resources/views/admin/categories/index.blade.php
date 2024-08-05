@@ -56,19 +56,9 @@
                                             <a href="{{ route('admin.categories.edit', $category->id) }}"
                                                 class="btn btn-warning mr-1">Edit</a>
 
-                                                <a href="{{ route('admin.categories.destroy', $category->id) }}"
-                                                    onclick="return confirm('Bạn có chắc chắn xóa không?')"
-                                                     class="btn btn-danger mr-1">Edit</a>
-    
-
-                                            {{-- <form action="{{ route('admin.categories.destroy', $category->id) }}"
-                                                method="post">
-                                                @csrf
-                                                @method('DELETE')
-
-                                                <a onclick="return confirm('Bạn có chắc chắn xóa không?')"
-                                                    class="btn btn-danger">Delete</a>
-                                            </form> --}}
+                                            <a href="{{ route('admin.categories.destroy', $category->id) }}"
+                                                onclick="return confirm('Bạn có chắc chắn xóa không?')"
+                                                class="btn btn-danger mr-1">Edit</a>
                                         </div>
 
                                     </td>

@@ -1,3 +1,6 @@
+@extends('admin.layouts.master')
+
+@section('content')
 <div class="container-fluid">
     <!-- Page Heading -->
     <h1 class="h3 mb-2 text-gray-800">
@@ -73,3 +76,25 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('scripts')
+    <!-- Page level plugins -->
+    <script src="{{ asset('theme/admin/vendor/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('theme/admin/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
+
+    <!-- Page level custom scripts -->
+@endsection
+
+@section('script-libs')
+    <script>
+        $(document).ready(function() {
+            $('#dataTable').DataTable();
+            // "order":  false;
+        });
+    </script>
+@endsection
+
+@section('style-libs')
+    <link href="{{ asset('theme/admin/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet" />
+@endsection

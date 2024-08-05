@@ -62,8 +62,8 @@
     </a>
     <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="?act=tags">Danh Sách</a>
-            <a class="collapse-item" href="?act=tags-create">Thêm Mới</a>
+            <a class="collapse-item" href="{{ route('admin.tags.index') }}">Danh Sách</a>
+            <a class="collapse-item" href="{{ route('admin.tags.create') }}">Thêm Mới</a>
         </div>
     </div>
 </li>
