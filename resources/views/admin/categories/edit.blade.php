@@ -15,8 +15,8 @@
             </div>
             <div class="card-body">
                 @if (session('msg'))
-                <div class="alert alert-success">{{ session('msg') }}</div>
-            @endif
+                    <div class="alert alert-success">{{ session('msg') }}</div>
+                @endif
 
                 <!-- Nested Row within Card Body -->
                 <div class="row">

@@ -90,8 +90,8 @@
     </a>
     <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="?act=posts">Danh Sách</a>
-            <a class="collapse-item" href="?act=posts-create">Thêm Mới</a>
+            <a class="collapse-item" href="{{ route('admin.posts.index') }}">Danh Sách</a>
+            <a class="collapse-item" href="{{ route('admin.posts.create') }}">Thêm Mới</a>
         </div>
     </div>
 </li>

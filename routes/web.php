@@ -1,8 +1,11 @@
 <?php
 
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AuthenController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\client\BlogController;
 use App\Http\Controllers\client\HomeController;
+use App\Http\Controllers\MemberController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\UserController;
@@ -24,9 +27,22 @@ Route::get('post/{id}', [BlogController::class, 'detailPost'])->name('home.post'
 Route::get('/category/{id}', [BlogController::class, 'blogListByDanhMucID'])->name('category');
 Route::post('search', [HomeController::class, 'searchHome'])->name('search');
 
+Route::get('login', [AuthenController::class, 'showFormLogin'])->name('login');
+Route::post('login', [AuthenController::class, 'hendleLogin']);
+
+Route::get('register', [AuthenController::class, 'showFormRegister'])->name('register');
+Route::post('register', [AuthenController::class, 'hendleRegister']);
+
+Route::post('logout', [AuthenController::class, 'logout'])->name('logout');
+
+
+Route::get('admin', [AdminController::class, 'dashboard'])
+    ->name('admin.dashboard')
+    ->middleware(['auth', 'is_admin']);
+
 Route::prefix('admin')
     ->as('admin.')
-    // ->middleware('auth')
+    ->middleware('auth')
 
     ->group(function () {
 
