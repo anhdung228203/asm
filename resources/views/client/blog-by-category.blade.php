@@ -1,43 +1,45 @@
 @extends('client.layouts.master')
 
-@php
-    $categoryForMenu = DB::table('categories')->select('id', 'name')->get();
-    $tags = DB::table('tags')->select('tags.id as t_id', 'tags.name as t_name')->get();
-@endphp
+
 @section('content')
     <section class="section">
         <div class="py-4"></div>
         <div class="container">
             <div class="row">
                 <div class="col-lg-8  mb-5 mb-lg-0">
-                    <h1 class="h2 mb-4">Danh Mục: <mark>{{ $post[0]->c_name }}</mark></h1>
-                    @foreach ($post as $post)
+                    <h1 class="h2 mb-4">Danh Mục: <mark>{{ $posts[0]->category->name }}</mark></h1>
+                    @foreach ($posts as $post)
                         <article class="card mb-4">
                             <div class="post-slider">
-                                <img src="/client/{{ $post->p_img_thumnail }}" class="card-img-top" alt="post-thumb">
+                                <img src="/theme//client/{{ $post->img_thumnail }}" class="card-img-top" alt="post-thumb" >
                             </div>
                             <div class="card-body">
-                                <h3 class="mb-3"><a class="post-title" href="{{ url('post/' . $post->p_id) }}">{{ $post->p_title }}</a>
+                                <h3 class="mb-3"><a class="post-title"
+                                        href="{{ url('post/' . $post->id) }}">{{ $post->title }}</a>
                                 </h3>
                                 <ul class="card-meta list-inline">
                                     <li class="list-inline-item">
                                         <a href="author-single.html" class="card-meta-author">
-                                            <img src="/client/{{ $post->au_avatar }}">
-                                            <span>{{ $post->au_name }}</span>
+                                            <img src="/client/{{ $post->author->avatar }}">
+                                            <span>{{ $post->author->name }}</span>
                                         </a>
                                     </li>
 
                                     <li class="list-inline-item">
-                                        <i class="ti-calendar"></i>{{ $post->p_updated_at }}
+                                        <i class="ti-calendar"></i>{{ $post->updated_at }}
                                     </li>
 
                                 </ul>
-                                <p>{{ $post->p_excerpt }}</p>
-                                <a href="{{ url('post/' . $post->p_id) }}" class="btn btn-outline-primary">Read More</a>
+                                <p>{{ $post->excerpt }}</p>
+                                <a href="{{ url('post/' . $post->id) }}" class="btn btn-outline-primary">Đọc Thêm</a>
                             </div>
                         </article>
                     @endforeach
+
+                    {{ $posts->links() }}
+                  
                 </div>
+
 
                 <aside class="col-lg-4 sidebar-inner">
                     <!-- Search -->
@@ -68,7 +70,8 @@
                         <ul class="list-unstyled widget-list">
                             @foreach ($categoryForMenu as $category)
                                 <li>
-                                    <a href="tags.html" class="d-flex">{{ $category->name }}</a>
+                                    <a href="{{ route('category', ['id' => $category->id]) }}"
+                                        class="d-flex">{{ $category->name }}</a>
                                 </li>
                             @endforeach
 
@@ -79,7 +82,7 @@
                         <h4 class="widget-title"><span>Thẻ</span></h4>
                         <ul class="list-inline widget-list-inline widget-card">
                             @foreach ($tags as $tag)
-                                <li class="list-inline-item"><a href="tags.html">{{ $tag->t_name }}</a></li>
+                                <li class="list-inline-item"><a href="tags.html">{{ $tag->name }}</a></li>
                             @endforeach
 
 
@@ -93,14 +96,14 @@
                         @foreach ($postTop3LatestOnHome as $post)
                             <article class="widget-card">
                                 <div class="d-flex">
-                                    <img class="card-img-sm" src="/client/{{ $post->p_img_thumnail }}">
+                                    <img class="card-img-sm" src="/client/{{ $post->img_thumnail }}">
                                     <div class="ml-3">
                                         <h5><a class="post-title"
-                                                href="{{ url('post/' . $post->p_id) }}">{{ $post->p_title }}-
-                                                {{ $post->p_id }}</a></h5>
+                                                href="{{ url('post/' . $post->id) }}">{{ $post->title }}-
+                                                {{ $post->id }}</a></h5>
                                         <ul class="card-meta list-inline mb-0">
                                             <li class="list-inline-item mb-0">
-                                                <i class="ti-calendar"></i>{{ $post->p_updated_at }}
+                                                <i class="ti-calendar"></i>{{ $post->updated_at }}
                                             </li>
                                         </ul>
                                     </div>

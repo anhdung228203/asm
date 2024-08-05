@@ -5,7 +5,7 @@
             <ul class="list-inline widget-list-inline">
                
                 @foreach ($tags as $tag)
-                <li class="list-inline-item"><a href="tags.html">{{$tag->t_name}}</a></li>
+                <li class="list-inline-item"><a href="tags.html">{{$tag->name}}</a></li>
                 @endforeach
 
             </ul>
