@@ -17,8 +17,8 @@
             </div>
             <div class="card-body">
                 @if (session('msg'))
-                <div class="alert alert-success">{{ session('msg') }}</div>
-            @endif
+                    <div class="alert alert-success">{{ session('msg') }}</div>
+                @endif
                 <!-- Nested Row within Card Body -->
                 <div class="row">
                     <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
@@ -27,7 +27,7 @@
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">Create an categories!</h1>
                             </div>
-                            <form  action="{{ route('admin.categories.store') }}" method="POST">
+                            <form action="{{ route('admin.categories.store') }}" method="POST">
                                 @csrf
                                 <div class="form-group row">
                                     <div class="col-sm-12 mb-3 mb-sm-0">

@@ -1,46 +1,50 @@
-<div class="container-fluid">
-    <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800"><?= $title ?></h1>
+@extends('admin.layouts.master')
+
+@section('content')
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <h1 class="h3 mb-2 text-gray-800"></h1>
 
 
-    <!-- DataTales Example -->
-    <div class="card shadow mb-4">
-        <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">
-                Detail
-            </h6>
-        </div>
-        <div class="card-body">
-            <table class="table">
-                <tr>
-                    <th>Trường</th>
-                    <th>Dữ Liệu</th>
-                </tr>
+        <!-- DataTales Example -->
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">
+                    Detail
+                </h6>
+            </div>
+            <div class="card-body">
+                <table class="table">
+                    <tr>
+                        <th>Trường</th>
+                        <th>Dữ Liệu</th>
+                    </tr>
 
-                <?php foreach ($user as $fieldName => $value) : ?>
+                    <?php foreach ($model->toArray() as $fieldName => $value) : ?>
                     <tbody>
-                        <tr>
-                            <td><?= ucfirst($fieldName) ?></td>
-                            <td><?php
-                                switch ($fieldName) {
-                                    case 'password':
-                                        echo '******';
-                                        break;
-                                    case 'type':
-                                        echo  $value ?
-                                            ' <span class="badge badge-success">Admin</span>' :
-                                            ' <span class="badge badge-warning">Member</span>';
-                                        break;
-                                    default:
-                                        echo $value;
-                                        break;
-                                }
-                                ?></td>
+                        <td>{{ ucfirst($fieldName) }}</td>
+                        <td>
+                            @switch($fieldName)
+                                @case('password')
+                                    ******
+                                @break
+
+                                @case('type')
+                                    {!! $value
+                                        ? '<span class="badge badge-success">Admin</span>'
+                                        : '<span class="badge badge-warning">Member</span>' !!}
+                                @break
+
+                                @default
+                                    {{ $value }}
+                            @endswitch
+                        </td>
                         </tr>
                     </tbody>
-                <?php endforeach; ?>
-            </table>
-        <a href="<?= BASE_URL_ADMIN ?>?act=users" class="btn btn-danger">Black Frist</a>
+                    <?php endforeach; ?>
+                </table>
+                <a href="{{ route('admin.users.index') }}" class="btn btn-danger">Black Frist</a>
+            </div>
         </div>
     </div>
-</div>
+@endsection

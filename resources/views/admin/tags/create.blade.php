@@ -33,7 +33,7 @@
                                         <label for="name" class="form-label">Name:</label>
                                         <input type="text" class="form-control " id="name" name="name"
                                             placeholder="Name"
-                                            value="<?= isset($_SESSION['data']) ? $_SESSION['data']['name'] : null ?>">
+                                            value="">
                                     </div>
                                 </div>
 
